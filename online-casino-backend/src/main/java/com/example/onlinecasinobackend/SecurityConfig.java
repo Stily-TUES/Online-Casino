@@ -4,29 +4,45 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity; // Add this import statement
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                .authorizeRequests()
-                    .antMatchers("/api/register", "/api/login").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/api/login")
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll();
-        }
+    @Bean
+    public UserDetailsService userDetailsService() {
+        JdbcDaoImpl userDetailsService = new JdbcDaoImpl();
+        userDetailsService.setDataSource(dataSource);
+        userDetailsService.setUsersByUsernameQuery("");
+        userDetailsService.setAuthoritiesByUsernameQuery("");
+        return userDetailsService;
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/api/register", "/api/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/api/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
+    }
+}

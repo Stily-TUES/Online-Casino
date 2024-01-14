@@ -1,16 +1,24 @@
+package com.example.onlinecasinobackend.gameLogic;
+
+import com.example.onlinecasinobackend.gameLogic.Payline;
+import com.example.onlinecasinobackend.gameLogic.Symbol;
+import com.example.onlinecasinobackend.model.User;
+import com.example.onlinecasinobackend.gameLogic.Reel;
+import java.util.List;
+import java.util.Map;
+
 public class SlotMachine {
 
-    private List<Reel> reels;
-    private List<Symbol> symbols;
-    private List<Payline> paylines;
+    private final List<Reel> reels;
+    private final List<Payline> paylines;
     private double jackpotPool = 0.0;
     private static final double BET_AMOUNT = 1.0;
 
-    public SlotMachine(List<Reel> reels, List<Symbol> symbols, List<Payline> paylines) {
+    public SlotMachine(List<Reel> reels, List<Payline> paylines) {
         this.reels = reels;
-        this.symbols = symbols;
         this.paylines = paylines;
     }
+
     public double getJackpotPool() {
         return jackpotPool;
     }
@@ -23,19 +31,18 @@ public class SlotMachine {
         }
 
         user.deductBalance(BET_AMOUNT);
-    
 
         jackpotPool += BET_AMOUNT;
-    
+
         for (Reel reel : reels) {
             reel.spin();
         }
-    
+
         for (Payline payline : paylines) {
             Map.Entry<Integer, Symbol> winningInfo = getWinningCountAndSymbol(payline);
             int winningCount = winningInfo.getKey();
             Symbol winningSymbol = winningInfo.getValue();
-    
+
             if (winningCount >= 3) {
                 if (winningSymbol == Symbol.SEVEN && winningCount == 5) {
                     double jackpotWinnings = jackpotPool;
@@ -52,8 +59,7 @@ public class SlotMachine {
             }
         }
     }
-    
-    
+
     private double calculateWinnings(Symbol winningSymbol, int winningCount) {
         double winnings = BET_AMOUNT * winningSymbol.getPayout() * winningCount;
         return winnings;

@@ -2,8 +2,8 @@ package com.example.onlinecasinobackend.gameLogic;
 
 public class Symbol {
 
-    private String name;
-    private int payout;
+    private final String name;
+    private final int payout;
 
     public Symbol(String name, int payout) {
         this.name = name;
@@ -17,4 +17,9 @@ public class Symbol {
     public int getPayout() {
         return payout;
     }
+
+//    public int size() {
+//        return name.length();
+//    }
+
 }

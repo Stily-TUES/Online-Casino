@@ -1,7 +1,15 @@
+package com.example.onlinecasinobackend.controller;
+
+import com.example.onlinecasinobackend.model.ReelEntity;
+import com.example.onlinecasinobackend.model.SymbolEntity;
+import com.example.onlinecasinobackend.service.SlotMachineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/slot-machine")
@@ -20,15 +28,4 @@ public class SlotMachineController {
         return ResponseEntity.ok(symbols);
     }
 
-    @GetMapping("/reels")
-    public ResponseEntity<List<ReelEntity>> getAllReels() {
-        List<ReelEntity> reels = slotMachineService.getAllReels();
-        return ResponseEntity.ok(reels);
-    }
-
-    @GetMapping("/paylines")
-    public ResponseEntity<List<PaylineEntity>> getAllPaylines() {
-        List<PaylineEntity> paylines = slotMachineService.getAllPaylines();
-        return ResponseEntity.ok(paylines);
-    }
 }

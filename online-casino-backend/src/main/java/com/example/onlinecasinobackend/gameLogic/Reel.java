@@ -1,8 +1,11 @@
+package com.example.onlinecasinobackend.gameLogic;
+
+import com.example.onlinecasinobackend.gameLogic.Symbol;
 import java.util.List;
 import java.util.Random;
 
 public class Reel {
-    private List<Symbol> stops; // List of symbols on the reel
+    private final List<Symbol> stops;
 
     public Reel(List<Symbol> stops) {
         this.stops = stops;

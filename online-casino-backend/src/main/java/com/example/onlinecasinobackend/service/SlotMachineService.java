@@ -1,21 +1,26 @@
+
+package com.example.onlinecasinobackend.service;
+
+import com.example.onlinecasinobackend.model.SymbolEntity;
+import com.example.onlinecasinobackend.repository.SymbolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SlotMachineService {
 
     private final SymbolRepository symbolRepository;
-    // Inject other repositories as needed
 
     @Autowired
     public SlotMachineService(SymbolRepository symbolRepository) {
         this.symbolRepository = symbolRepository;
-        // Inject other repositories as needed
+
     }
 
     public List<SymbolEntity> getAllSymbols() {
         return symbolRepository.findAll();
     }
 
-    // Implement similar methods for other entities (reels, paylines, etc.)
 }

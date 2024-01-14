@@ -1,3 +1,6 @@
+package com.example.onlinecasinobackend.controller;
+
+import com.example.onlinecasinobackend.dto.UserLoginDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
