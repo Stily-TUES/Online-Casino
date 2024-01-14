@@ -1,0 +1,5 @@
+com\example\onlinecasinobackend\controller\UserController.class
+com\example\onlinecasinobackend\model\User.class
+com\example\onlinecasinobackend\OnlineCasinoBackendApplication.class
+com\example\onlinecasinobackend\repository\UserRepository.class
+com\example\onlinecasinobackend\service\UserService.class
