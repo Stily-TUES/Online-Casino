@@ -18,7 +18,7 @@ public class User {
     private float balance = 10;
 
     public User() {
-        // Default constructor
+        
     }
 
     public User(String username, String email, String password, float balance) {

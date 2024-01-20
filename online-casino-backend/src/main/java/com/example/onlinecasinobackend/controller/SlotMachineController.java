@@ -1,6 +1,5 @@
 package com.example.onlinecasinobackend.controller;
 
-import com.example.onlinecasinobackend.model.ReelEntity;
 import com.example.onlinecasinobackend.model.SymbolEntity;
 import com.example.onlinecasinobackend.service.SlotMachineService;
 import org.springframework.beans.factory.annotation.Autowired;

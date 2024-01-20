@@ -36,15 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/api/register", "/api/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/api/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .authorizeRequests(requests -> requests
+                        .antMatchers("/api/register", "/api/login").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin(login -> login
+                        .loginPage("/api/login")
+                        .permitAll())
+                .logout(logout -> logout
+                        .permitAll());
     }
 }
