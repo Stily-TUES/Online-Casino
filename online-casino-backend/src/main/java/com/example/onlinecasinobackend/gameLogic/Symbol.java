@@ -18,8 +18,12 @@ public class Symbol {
         return payout;
     }
 
-//    public int size() {
-//        return name.length();
-//    }
+    public static final Symbol SEVEN = new Symbol("Seven", 5);
+    public static final Symbol CHERRY = new Symbol("Cherry", 1);
+    public static final Symbol MELON = new Symbol("Melon", 2);
+    public static final Symbol ORANGE = new Symbol("Orange", 3);
+    // public int size() {
+    // return name.length();
+    // }
 
 }
